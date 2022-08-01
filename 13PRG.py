@@ -17,7 +17,7 @@ Question_List = random.sample(Question_List, len(Question_List))
 
 imagefile = PhotoImage(file="bookimage.png")
 imageLabel = Label(window,image=imagefile,bg="#cfe2f3")
-imageLabel.place(x=450,y=150)
+imageLabel.place(x=450,y=200)
 
 
 def skip():
@@ -113,7 +113,7 @@ def playButton():
     else:
         grade = "Excellence",
     
-    print = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Score:")
+    print = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Score:",padx=100,pady=100,borderwidth=1,relief="solid")
     print.place(x=190,y=350)
 
     print = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Grade:")
@@ -123,7 +123,7 @@ def playButton():
     printScore.place(x=600,y=350)
     print = Label(window3,font=("Cooper Black",25),bg = "#cfe2f3",text=grade)
     print.place(x=450,y=500)
-    print = Label(window3,font=("Cooper Black",25),bg = "#cfe2f3", text="Thank You For Playing :)")
+    print = Label(window3,font=("Cooper Black",25),bg = "#cfe2f3", text="Thank You For Playing :)",padx=30,pady=40,borderwidth=2,relief="solid")
     print.place(x=190,y=20)
 
 
