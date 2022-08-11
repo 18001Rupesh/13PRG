@@ -1,23 +1,36 @@
 from tkinter import *
 from unittest import skip
 import random
-window = Tk()
-window.title("Year 9 English Language Feature Quiz")
-window.config(bg = "#cfe2f3")
-window.geometry("1000x700")
-titleLabel = Label(window, bg = "#cfe2f3", text="Year 9 English Language Feature Quiz", font=("Cooper Black",24))
-titleLabel.place(x=250, y=30)
-global score
-score = 0
-Question_List = [["The sky wept across the grey land.","onomatopoeia","personification","alliteration"],["He has a heart of gold.","metaphor","simile","metaphor"],["The snake slid across the sandy shore","alliteration","hyperbole","simile"], [" I love you to the moon and back.","hyperbole","metaphor","simile"],["The waves smashed and crashed and bashed the rocks.", "alliteration","metaphor","onomatopoeia"],["Twinkle, twinkle little star, how I wonder what you are.","rhyme", "metaphor","simile"],["The stars were diamonds in the black night.","metaphor","simile","rhyme"],["The trees were waving goodbye in the wind", "personification","hyperbole","simile"],["My love is like a red, red rose","alliteration","personification","rhyme"],["My teacher gave me a tonne of homework","hyperbole","metaphor","alliteration"],["First fog froze the sky in a grainy grey","alliteration","personification","rhyme"],["Water, water everywhere but not a drop to drink","repetition","personification","metaphor"],["He entered the class like a hungry tiger","simile","sibilance" ,"metaphor"],["Don't you want to win?","rhetorical question","personification","rhyme"],["The moonlight smiled on the traveller","personification","rhyme","metaphor"]]
+
+def startup():
+    global window
+    window = Tk()
+    window.title("Year 9 English Language Feature Quiz")
+    window.config(bg = "#cfe2f3")
+    window.geometry("1000x700")
+    titleLabel = Label(window, bg = "#cfe2f3", text="Year 9 English Language Feature Quiz", font=("Cooper Black",24))
+    titleLabel.place(x=250, y=30)
+    global score
+    score = 0
+    global Question_List
+    Question_List = [["The sky wept across the grey land.","onomatopoeia","personification","alliteration"],["He has a heart of gold.","metaphor","simile","metaphor"],["The snake slid across the sandy shore","alliteration","hyperbole","simile"], [" I love you to the moon and back.","hyperbole","metaphor","simile"],["The waves smashed and crashed and bashed the rocks.", "alliteration","metaphor","onomatopoeia"],["Twinkle, twinkle little star, how I wonder what you are.","rhyme", "metaphor","simile"],["The stars were diamonds in the black night.","metaphor","simile","rhyme"],["The trees were waving goodbye in the wind", "personification","hyperbole","simile"],["My love is like a red, red rose","alliteration","personification","rhyme"],["My teacher gave me a tonne of homework","hyperbole","metaphor","alliteration"],["First fog froze the sky in a grainy grey","alliteration","personification","rhyme"],["Water, water everywhere but not a drop to drink","repetition","personification","metaphor"],["He entered the class like a hungry tiger","simile","sibilance" ,"metaphor"],["Don't you want to win?","rhetorical question","personification","rhyme"],["The moonlight smiled on the traveller","personification","rhyme","metaphor"]]
 
 
-Question_List = random.sample(Question_List, len(Question_List))
+    Question_List = random.sample(Question_List, len(Question_List))
 
 
-imagefile = PhotoImage(file="bookimage.png")
-imageLabel = Label(window,image=imagefile,bg="#cfe2f3")
-imageLabel.place(x=450,y=200)
+    imagefile = PhotoImage(file="bookimage.png")
+    imageLabel = Label(window,image=imagefile,bg="#cfe2f3")
+    imageLabel.place(x=450,y=200)
+
+    play = Button(window,borderwidth=1, relief="solid",bg = "#cfe2f3", text="Play",font=("Cooper Black",16),command=playButton,padx=50,pady=10)
+    play.place(x=250, y=500)
+
+    endquizButton  = Button(window,borderwidth=1, relief="solid",bg = "#cfe2f3", text="End Quiz",font=("Cooper Black",16), command=exit,padx=40,pady=10)
+    endquizButton.place (x=650, y=500)
+    window.mainloop()
+
+
 
 
 def skip():
@@ -113,7 +126,9 @@ def playButton():
     else:
         grade = "Excellence",
     
-    print = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Score:",padx=100,pady=100,borderwidth=1,relief="solid")
+
+    
+    print = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Score:")
     print.place(x=190,y=350)
 
     print = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Grade:")
@@ -130,11 +145,12 @@ def playButton():
 
     imagefile = PhotoImage(file="bookout.png")
     imageLabel = Label(window3,image=imagefile,bg="#cfe2f3")
-    imageLabel.place(x=300,y=150)
+    imageLabel.place(x=340,y=150)
 
 
-    play = Button(window3,borderwidth=1, relief="solid",bg = "#cfe2f3", text="Play Again",font=("Cooper Black",16),command=playButton,padx=50,pady=10)
+    play = Button(window3,borderwidth=1, relief="solid",bg = "#cfe2f3", text="Play Again",font=("Cooper Black",16),command=restart,padx=50,pady=10)
     play.place(x=100, y=600)
+
 
     endquizButton  = Button(window3,borderwidth=1, relief="solid",bg = "#cfe2f3", text="End Quiz",font=("Cooper Black",16), command=exit,padx=40,pady=10)
     endquizButton.place (x=450, y=600)
@@ -142,18 +158,8 @@ def playButton():
     window3.mainloop()
 
 
+def restart():
+    window3.destroy()
+    startup()
 
-        
-    
-
-play = Button(window,borderwidth=1, relief="solid",bg = "#cfe2f3", text="Play",font=("Cooper Black",16),command=playButton,padx=50,pady=10)
-play.place(x=250, y=500)
-
-
-endquizButton  = Button(window,borderwidth=1, relief="solid",bg = "#cfe2f3", text="End Quiz",font=("Cooper Black",16), command=exit,padx=40,pady=10)
-endquizButton.place (x=650, y=500)
-
-    
-
-
-window.mainloop()
+startup()
