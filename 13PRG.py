@@ -70,6 +70,7 @@ def playButton():
         temp.append(Question_List[loop][1])
         temp.append(Question_List[loop][2])
         temp.append(Question_List[loop][3])
+        temp = random.sample(temp,len(temp))
 
         answerA = Button(window2,padx= 10, pady=10,borderwidth=1, relief="solid", font=("Cooper Black",16),bg = "#cfe2f3",text= temp[0],command=lambda:answerPress(0))
         answerA.place (x=300, y=400,anchor="center")
