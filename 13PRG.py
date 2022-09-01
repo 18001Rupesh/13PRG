@@ -13,7 +13,7 @@ def startup():
     global score
     score = 0
     global Question_List
-    Question_List = [["The sky wept across the grey land.","onomatopoeia","personification","alliteration"],["He has a heart of gold.","metaphor","simile","metaphor"],["The snake slid across the sandy shore","alliteration","hyperbole","simile"], [" I love you to the moon and back.","hyperbole","metaphor","simile"],["The waves smashed and crashed and bashed the rocks.", "alliteration","metaphor","onomatopoeia"],["Twinkle, twinkle little star, how I wonder what you are.","rhyme", "metaphor","simile"],["The stars were diamonds in the black night.","metaphor","simile","rhyme"],["The trees were waving goodbye in the wind", "personification","hyperbole","simile"],["My love is like a red, red rose","alliteration","personification","rhyme"],["My teacher gave me a tonne of homework","hyperbole","metaphor","alliteration"],["First fog froze the sky in a grainy grey","alliteration","personification","rhyme"],["Water, water everywhere but not a drop to drink","repetition","personification","metaphor"],["He entered the class like a hungry tiger","simile","sibilance" ,"metaphor"],["Don't you want to win?","rhetorical question","personification","rhyme"],["The moonlight smiled on the traveller","personification","rhyme","metaphor"]]
+    Question_List = [["The sky wept across the grey land.","personification","onomatopoeia","alliteration"],["He has a heart of gold.","metaphor","simile","metaphor"],["The snake slid across the sandy shore","alliteration","hyperbole","simile"], [" I love you to the moon and back.","hyperbole","metaphor","simile"],["The waves smashed and crashed and bashed the rocks.", "alliteration","metaphor","onomatopoeia"],["Twinkle, twinkle little star, how I wonder what you are.","rhyme", "metaphor","simile"],["The stars were diamonds in the black night.","metaphor","simile","rhyme"],["The trees were waving goodbye in the wind", "personification","hyperbole","simile"],["My love is like a red, red rose","alliteration","personification","rhyme"],["My teacher gave me a tonne of homework","hyperbole","metaphor","alliteration"],["First fog froze the sky in a grainy grey","alliteration","personification","rhyme"],["Water, water everywhere but not a drop to drink","repetition","personification","metaphor"],["He entered the class like a hungry tiger","simile","sibilance" ,"metaphor"],["Don't you want to win?","rhetorical question","personification","rhyme"],["The moonlight smiled on the traveller","personification","rhyme","metaphor"]]
 
 
     Question_List = random.sample(Question_List, len(Question_List))
@@ -86,12 +86,12 @@ def playButton():
 
         def answerPress(AnswerNum):
             if temp[AnswerNum] == Question_List[loop][1]:
-                answerMessage = Label(window2, bg = "#cfe2f3",font=("Cooper Black",20),borderwidth=1.5, relief="solid", text="Correct")
+                answerMessage = Label(window2, bg = "#98FB98",font=("Cooper Black",20),borderwidth=1.5, relief="solid", text="Correct")
                 answerMessage.place (x=300, y=400)
                 global score
                 score += 1
             else:
-                answerMessage = Label(window2, bg = "#cfe2f3",font=("Cooper Black",20),borderwidth=1.5, relief="solid", text="Incorrect")
+                answerMessage = Label(window2, bg = "#CD5C5C",font=("Cooper Black",20),borderwidth=1.5, relief="solid", text="Incorrect")
                 answerMessage.place (x=300, y=400)
             
             nextQuestion  = Button(window2, borderwidth=1,bg = "#cfe2f3", relief="solid", font=("Cooper Black",16),text="Next", command=next)
