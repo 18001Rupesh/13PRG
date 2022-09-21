@@ -1,8 +1,12 @@
+from dis import Instruction
+from distutils.log import info
 from tkinter import *
 from unittest import skip
 import random
 
 def startup():
+    global Question_Amount
+    Question_Amount = 15
     global window
     window = Tk()
     window.title("Year 9 English Language Feature Quiz")
@@ -13,8 +17,12 @@ def startup():
     global score
     score = 0
     global Question_List
-    Question_List = [["The sky wept across the grey land.","personification","onomatopoeia","alliteration"],["He has a heart of gold.","metaphor","simile","metaphor"],["The snake slid across the sandy shore","alliteration","hyperbole","simile"], [" I love you to the moon and back.","hyperbole","metaphor","simile"],["The waves smashed and crashed and bashed the rocks.", "alliteration","metaphor","onomatopoeia"],["Twinkle, twinkle little star, how I wonder what you are.","rhyme", "metaphor","simile"],["The stars were diamonds in the black night.","metaphor","simile","rhyme"],["The trees were waving goodbye in the wind", "personification","hyperbole","simile"],["My love is like a red, red rose","alliteration","personification","rhyme"],["My teacher gave me a tonne of homework","hyperbole","metaphor","alliteration"],["First fog froze the sky in a grainy grey","alliteration","personification","rhyme"],["Water, water everywhere but not a drop to drink","repetition","personification","metaphor"],["He entered the class like a hungry tiger","simile","sibilance" ,"metaphor"],["Don't you want to win?","rhetorical question","personification","rhyme"],["The moonlight smiled on the traveller","personification","rhyme","metaphor"]]
+    Question_List = [["Is 'The sky wept across the grey land' personificaton.","True","False"],["Is 'He has a heart of gold' a metaphor.","True","False"],["The snake slid across the sandy shore","alliteration","hyperbole","simile"], [" I love you to the moon and back.","hyperbole","metaphor","simile"],["The waves smashed and crashed and bashed the rocks.", "alliteration","metaphor","onomatopoeia"],["Twinkle, twinkle little star, how I wonder what you are.","rhyme", "metaphor","simile"],["The stars were diamonds in the black night.","metaphor","simile","rhyme"],["The trees were waving goodbye in the wind", "personification","hyperbole","simile"],["My love is like a red, red rose","alliteration","personification","rhyme"],["My teacher gave me a tonne of homework","hyperbole","metaphor","alliteration"],["First fog froze the sky in a grainy grey","alliteration","personification","rhyme"],["Water, water everywhere but not a drop to drink","repetition","personification","metaphor"],["He entered the class like a hungry tiger","simile","sibilance" ,"metaphor"],["Don't you want to win?","rhetorical question","personification","rhyme"],["The moonlight smiled on the traveller","personification","rhyme","metaphor"]]
+    global colours
+    colours = ["#91bfbb","#739599", "#93a3e6","#b7c1e8","#aa9bbd","#cedbbd","#8c7fa3","#89b097","#84a19e","#91a3a1"]
 
+    info = Label(window, bg = "#cfe2f3", text="Read & Select the Correct Language Feature", padx=20, pady=20, font=("Cooper Black",16))
+    info.place(x=290, y=390)
 
     Question_List = random.sample(Question_List, len(Question_List))
 
@@ -44,42 +52,46 @@ def playButton():
 
 
 
-    for loop in range(15):
+    for loop in range(Question_Amount):
 
 
         global window2
         window2 = Tk()
-        window2.configure(bg = "#cfe2f3")
+        global colours
+        colours = random.sample(colours, len(colours))
+        window2.configure(bg = colours[0])
         window2.geometry("980x800")
 
         imagefile = PhotoImage(file="keepgoing.png")
-        imageLabel = Label(window2,image=imagefile,bg="#cfe2f3")
+        imageLabel = Label(window2,image=imagefile,bg=colours[0])
         imageLabel.place(x=350,y=150)
 
-        Question1 = Label(window2, font=("Cooper Black",16),bg = "#cfe2f3", text = Question_List[loop][0], padx= 20, pady=20,borderwidth=1,relief="solid")
+        Question1 = Label(window2, font=("Cooper Black",16),bg = colours[0], text = Question_List[loop][0], padx= 20, pady=20,borderwidth=1,relief="solid")
         Question1.place(x=480,y=50, anchor="center")
 
-        endquizButton  = Button(window2,borderwidth=1, font=("Cooper Black",16), relief="solid",bg = "#cfe2f3", text="End Quiz", command=exit)
+        endquizButton  = Button(window2,borderwidth=1, font=("Cooper Black",16), relief="solid",bg = colours[0], text="End Quiz", command=exit)
         endquizButton.place (x=850, y=20)
 
-        SkipButton  = Button(window2,borderwidth=1, font=("Cooper Black",16), relief="solid", bg = "#cfe2f3",text="Skip", command=skip)
+        SkipButton  = Button(window2,borderwidth=1, font=("Cooper Black",16), relief="solid", bg = colours[0],text="Skip", command=skip)
         SkipButton.place (x=50, y=20)
     
         global temp
         temp = []
         temp.append(Question_List[loop][1])
         temp.append(Question_List[loop][2])
-        temp.append(Question_List[loop][3])
+        if len(Question_List[loop]) > 3:
+            temp.append(Question_List[loop][3])
         temp = random.sample(temp,len(temp))
 
-        answerA = Button(window2,padx= 10, pady=10,borderwidth=1, relief="solid", font=("Cooper Black",16),bg = "#cfe2f3",text= temp[0],command=lambda:answerPress(0))
+        answerA = Button(window2,padx= 10, pady=10,borderwidth=1, relief="solid", font=("Cooper Black",16),bg = colours[0],text= temp[0],command=lambda:answerPress(0))
         answerA.place (x=300, y=400,anchor="center")
 
-        answerB = Button(window2,padx= 10, pady=10, borderwidth=1, relief="solid",font=("Cooper Black",16),bg = "#cfe2f3", text=temp[1],command=lambda:answerPress(1))
+        answerB = Button(window2,padx= 10, pady=10, borderwidth=1, relief="solid",font=("Cooper Black",16),bg = colours[0], text=temp[1],command=lambda:answerPress(1))
         answerB.place (x=300, y=550,anchor="center")
         
-        answerC = Button(window2,padx= 10, pady=10,borderwidth=1, relief="solid", font=("Cooper Black",16),bg = "#cfe2f3",text=temp[2],command=lambda:answerPress(2))
-        answerC.place (x=650, y=400,anchor="center")
+        if len(Question_List[loop]) > 3:
+            answerC = Button(window2,padx= 10, pady=10,borderwidth=1, relief="solid", font=("Cooper Black",16),bg = colours[0],text=temp[2],command=lambda:answerPress(2))
+            answerC.place (x=650, y=400,anchor="center")
 
 
         
@@ -94,12 +106,13 @@ def playButton():
                 answerMessage = Label(window2, bg = "#CD5C5C",font=("Cooper Black",20),borderwidth=1.5, relief="solid", text="Incorrect")
                 answerMessage.place (x=300, y=400)
             
-            nextQuestion  = Button(window2, borderwidth=1,bg = "#cfe2f3", relief="solid", font=("Cooper Black",16),text="Next", command=next)
+            nextQuestion  = Button(window2, borderwidth=1,bg = colours[0], relief="solid", font=("Cooper Black",16),text="Next", command=next)
             nextQuestion.place (x=600, y=400)
 
             answerA.destroy()
             answerB.destroy()
-            answerC.destroy()
+            if len(Question_List[loop]) > 3:
+                answerC.destroy()
 
 
 
@@ -129,18 +142,18 @@ def playButton():
     
 
     
-    print = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Score:")
-    print.place(x=190,y=350)
+    print1 = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Score:")
+    print1.place(x=190,y=350)
 
-    print = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Grade:")
-    print.place(x=190,y=500)
+    print2 = Label(window3,font=("Cooper Black",25), bg = "#cfe2f3", text="Grade:")
+    print2.place(x=190,y=500)
     
     printScore = Label(window3, font=("Cooper Black",25),bg = "#cfe2f3", text=score)
     printScore.place(x=600,y=350)
-    print = Label(window3,font=("Cooper Black",25),bg = "#cfe2f3",text=grade)
-    print.place(x=450,y=500)
-    print = Label(window3,font=("Cooper Black",25),bg = "#cfe2f3", text="Thank You For Playing :)",padx=30,pady=40,borderwidth=2,relief="solid")
-    print.place(x=190,y=20)
+    print3 = Label(window3,font=("Cooper Black",25),bg = "#cfe2f3",text=grade)
+    print3.place(x=450,y=500)
+    print4 = Label(window3,font=("Cooper Black",25),bg = "#cfe2f3", text="Thank You For Playing :)",padx=30,pady=40,borderwidth=2,relief="solid")
+    print4.place(x=190,y=20)
 
 
 
@@ -164,3 +177,4 @@ def restart():
     startup()
 
 startup()
+
